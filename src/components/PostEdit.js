@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Datagrid, TextField, ReferenceField } from 'react-admin';
+import { Edit, SimpleForm, DisabledInput, LongTextInput, ReferenceInput, SelectInput, TextInput } from 'react-admin';
 
 export const PostEdit = props => (
     <Edit {...props}>
