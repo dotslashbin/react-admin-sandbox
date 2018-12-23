@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit, Create, SimpleForm, DisabledInput, LongTextInput, ReferenceInput, SelectInput, TextInput, List, Datagrid, ReferenceField, TextField, EditButton, Filter } from 'react-admin';
+import { Edit, Create, SimpleForm, DisabledInput, LongTextInput, ReferenceInput, SelectInput, TextInput, List, Datagrid, ReferenceField, TextField, EditButton, Filter, SimpleList } from 'react-admin';
 
 const PostFilter = (props) => (
     <Filter {...props}>
@@ -28,23 +28,47 @@ const PostFilter = (props) => (
  * @param  {[type]} props [description]
  * @return {[type]}       [description]
  */
-export const PostList = props => {
-    // console.log(props)
-    return (
-        <List {...props} filters={ <PostFilter /> }>
-            <Datagrid>
-                
-                <ReferenceField source="userId" reference="users">
-                    <TextField source="name" />
-                </ReferenceField>
-                <TextField source="title" />
-                <TextField source="body" />
 
-                <EditButton />
-            </Datagrid>
-        </List>
-    )
-}
+/**
+ * Version 1: 
+ *     Creates the list of posts using data grid
+ * @param  {[type]} props [description]
+ * @return {[type]}       [description]
+ */
+// export const PostList = props => {
+//     // console.log(props)
+//     return (
+//         <List {...props} filters={ <PostFilter /> }>
+//             <Datagrid>
+                
+//                 <ReferenceField source="userId" reference="users">
+//                     <TextField source="name" />
+//                 </ReferenceField>
+//                 <TextField source="title" />
+//                 <TextField source="body" />
+
+//                 <EditButton />
+//             </Datagrid>
+//         </List>
+//     )
+// }
+
+/**
+ * Version 2:
+ *     Creates the list of posts using simple list
+ * @param  {[type]} props [description]
+ * @return {[type]}       [description]
+ */
+export const PostList = props => (
+    <List {...props}>
+        <SimpleList
+            primaryText={record => record.title}
+            secondaryText={record => `${record.views} views`}
+            tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
+        />
+    </List>
+)
+
 
 /**
  * Edit
