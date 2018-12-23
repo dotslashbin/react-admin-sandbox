@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit, Create, SimpleForm, DisabledInput, LongTextInput, ReferenceInput, SelectInput, TextInput, List, Datagrid, ReferenceField, TextField, EditButton, Filter, SimpleList } from 'react-admin';
+import { Edit, Create, SimpleForm, DisabledInput, LongTextInput, ReferenceInput, SelectInput, TextInput, List, Datagrid, ReferenceField, TextField, EditButton, Filter, SimpleList, Responsive } from 'react-admin';
 
 const PostFilter = (props) => (
     <Filter {...props}>
@@ -59,15 +59,46 @@ const PostFilter = (props) => (
  * @param  {[type]} props [description]
  * @return {[type]}       [description]
  */
-export const PostList = props => (
+// export const PostList = props => (
+//     <List {...props}>
+//         <SimpleList
+//             primaryText={record => record.title}
+//             secondaryText={record => `${record.views} views`}
+//             tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
+//         />
+//     </List>
+// )
+
+/**
+ * Version 3: 
+ *     Responsive approach where it chooses between 2 style to determine which view to render
+ * @param  {[type]} props [description]
+ * @return {[type]}       [description]
+ */
+export const PostList = (props) => (
     <List {...props}>
-        <SimpleList
-            primaryText={record => record.title}
-            secondaryText={record => `${record.views} views`}
-            tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
+        <Responsive
+            small={
+                <SimpleList
+                    primaryText={record => record.title}
+                    secondaryText={record => `${record.views} views`}
+                    tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
+                />
+            }
+            medium={
+                <Datagrid>
+                    <TextField source="id" />
+                    <ReferenceField label="User" source="userId" reference="users">
+                        <TextField source="name" />
+                    </ReferenceField>
+                    <TextField source="title" />
+                    <TextField source="body" />
+                    <EditButton />
+                </Datagrid>
+            }
         />
     </List>
-)
+);
 
 
 /**
