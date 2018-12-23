@@ -4,7 +4,8 @@ import LaunchIcon from '@material-ui/icons/Launch'
 
 const styles = {
     link: {
-        textDecoration: 'none'
+        textDecoration: 'none', 
+        color: 'red'
     },
     icon: {
         width: '0.5em',
