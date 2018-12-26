@@ -9,6 +9,7 @@ import jsonServerProvider from 'ra-data-json-server'
 import { UserList } from './components/users'
 import authProvider from './components/authProvider'
 import Dashboard from './components/Dashboard'
+import MyLoginPage from './components/MyLoginPage'
 
 ////////////
 // Icons  //
@@ -30,7 +31,7 @@ const App = () => (
 )*/
 
 const App = () => (
-	<Admin dashboard={ Dashboard } dataProvider={ dataProvider } authProvider={ authProvider }>
+	<Admin loginPage={ MyLoginPage } dashboard={ Dashboard } dataProvider={ dataProvider } authProvider={ authProvider }>
 		<Resource name="posts" list={ PostList } edit={ PostEdit } create={ PostCreate } icon={PostIcon}/>
     	<Resource name="users" list={ UserList } icon={UserIcon}/>
 	</Admin>
